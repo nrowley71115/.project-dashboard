@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <div class="title-block">
+          <span class="eyebrow">Projects</span>
+          <h1>Project Dashboard</h1>
+          <p id="root-status" class="status">No folder selected.</p>
+        </div>
+        <div class="header-actions">
+          <div class="toolbar">
+            <button id="select-root" class="primary">Select Projects Folder</button>
+            <button id="refresh" class="ghost">Refresh</button>
+          </div>
+        </div>
+      </header>
+
+      <section class="controls" id="dashboard-controls">
+        <div id="filter-group" class="filter-group" role="group" aria-label="Project filter">
+          <button class="filter-btn is-active" data-filter="current">Current</button>
+          <button class="filter-btn" data-filter="completed">Completed</button>
+          <button class="filter-btn" data-filter="calendar">Calendar</button>
+        </div>
+        <div class="search-group header-search">
+          <label class="search-label" for="search-input">Search</label>
+          <div class="search-input">
+            <input
+              id="search-input"
+              type="search"
+              placeholder="Search title or description (Ctrl+K)"
+              autocomplete="off"
+            />
+            <span id="search-count" class="search-count"></span>
+          </div>
+          <div id="search-results" class="search-results is-hidden" role="listbox"></div>
+        </div>
+      </section>
+
+      <section id="dashboard-view" class="view">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Building</th>
+                <th>% Complete</th>
+                <th>Status</th>
+                <th>Assigned Date</th>
+                <th>EC Date</th>
+                <th>Actual EC Date</th>
+                <th>Div Rep</th>
+                <th>MOC</th>
+              </tr>
+            </thead>
+            <tbody id="project-table-body"></tbody>
+          </table>
+        </div>
+        <p id="empty-state" class="empty-state is-hidden">No projects match this view.</p>
+      </section>
+
+      <section id="calendar-view" class="view is-hidden">
+        <div class="calendar-scroll" id="calendar-scroll"></div>
+      </section>
+
+      <section id="project-view" class="view is-hidden">
+        <div class="project-header">
+          <button id="back-button" class="ghost">Back to Dashboard</button>
+          <div>
+            <h2 id="project-title">Project</h2>
+            <p id="project-path" class="status"></p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3>Project Details</h3>
+          <div id="project-fields" class="project-fields"></div>
+        </div>
+
+        <div class="project-card">
+          <div class="card-header">
+            <h3>Project Notes</h3>
+            <div class="card-actions">
+              <span id="copy-status" class="copy-status" aria-live="polite"></span>
+              <button id="open-project-folder" class="icon-button" type="button" title="Copy project folder path">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M3 6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="notes-hint">Editing here updates project.json notesDoc automatically.</div>
+          <div class="notes-editor-wrap">
+            <div id="notes-editor" class="notes-editor"></div>
+            <div id="table-toolbar" class="table-toolbar is-hidden" role="group" aria-label="Table controls">
+              <button id="table-add-row" type="button">+ Row</button>
+              <button id="table-del-row" type="button">- Row</button>
+              <button id="table-add-col" type="button">+ Column</button>
+              <button id="table-del-col" type="button">- Column</button>
+              <button id="table-del" type="button">Delete Table</button>
+            </div>
+            <div id="notes-menu" class="notes-menu is-hidden" role="listbox"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
