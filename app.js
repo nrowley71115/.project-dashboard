@@ -36,6 +36,8 @@ const TYPE_CLASSES = {
   BLANK: "type-blank",
 };
 
+const CALENDAR_FILTERS = new Set(["calendar-current", "calendar-completed"]);
+
 const Summary = TiptapNode.create({
   name: "summary",
   group: "block",
@@ -481,7 +483,7 @@ function sortProjects(a, b) {
 }
 
 function renderDashboard() {
-  if (state.filter === "calendar") {
+  if (CALENDAR_FILTERS.has(state.filter)) {
     elements.dashboardView.classList.add("is-hidden");
     elements.calendarView.classList.remove("is-hidden");
     renderCalendar();
@@ -1171,7 +1173,10 @@ function switchView(view) {
   elements.dashboardView.classList.toggle("is-hidden", !showDashboard);
   elements.projectView.classList.toggle("is-hidden", showDashboard);
   elements.filterGroup.classList.toggle("is-hidden", !showDashboard);
-  elements.calendarView.classList.toggle("is-hidden", !showDashboard || state.filter !== "calendar");
+  elements.calendarView.classList.toggle(
+    "is-hidden",
+    !showDashboard || !CALENDAR_FILTERS.has(state.filter),
+  );
   if (!showDashboard) {
     hideSearchResults();
   }
@@ -1183,7 +1188,10 @@ function renderCalendar() {
     return;
   }
 
+  const showCompleted = state.filter === "calendar-completed";
+
   const projects = state.projects
+    .filter((project) => (showCompleted ? project.isCompleted : !project.isCompleted))
     .map((project) => {
       const dateValue = normalizeDateValue(project.data.ecDate);
       return {
@@ -1198,7 +1206,9 @@ function renderCalendar() {
   if (!projects.length) {
     const empty = document.createElement("p");
     empty.className = "empty-state";
-    empty.textContent = "No projects have an EC Date yet.";
+    empty.textContent = showCompleted
+      ? "No completed projects have an EC Date yet."
+      : "No current projects have an EC Date yet.";
     elements.calendarScroll.appendChild(empty);
     return;
   }
