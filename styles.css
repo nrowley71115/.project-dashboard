@@ -347,6 +347,10 @@ tbody tr.type-wo {
   background: linear-gradient(90deg, rgba(220, 245, 228, 0.8), rgba(255, 255, 255, 0));
 }
 
+tbody tr.type-ser {
+  background: linear-gradient(90deg, rgba(214, 235, 255, 0.85), rgba(255, 255, 255, 0));
+}
+
 tbody tr:hover {
   background: rgba(237, 220, 201, 0.4);
 }

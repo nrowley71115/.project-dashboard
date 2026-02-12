@@ -31,6 +31,7 @@ const FIELD_ORDER = [
 const TYPE_CLASSES = {
   EI: "type-ei",
   SCP: "type-scp",
+  SER: "type-ser",
   WO: "type-wo",
   OTHER: "type-other",
   BLANK: "type-blank",
@@ -551,6 +552,10 @@ function normalizeType(value) {
 
   if (raw === "SCP") {
     return "SCP";
+  }
+
+  if (raw === "SER") {
+    return "SER";
   }
 
   if (raw === "WO") {

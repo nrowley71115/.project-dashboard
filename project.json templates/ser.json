@@ -1,0 +1,817 @@
+{
+	"title": "",
+	"description": "",
+	"type": "SER",
+	"building": "",
+	"percentComplete": 0,
+	"status": "",
+	"assignedDate": "",
+	"ecDate": "",
+	"actualEcDate": "",
+	"priority": 1,
+	"divRep": "",
+	"moc": "",
+    "notesDoc": {
+		"type": "doc",
+		"content": [
+			{
+				"type": "details",
+				"attrs": {
+					"open": false
+				},
+				"content": [
+					{
+						"type": "summary",
+						"attrs": {
+							"level": 2
+						},
+						"content": [
+							{
+								"type": "text",
+								"text": "Status"
+							}
+						]
+					},
+					{
+						"type": "table",
+						"content": [
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableHeader",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "Contact Div rep"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableHeader",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "Mechanical \\ Civil Help"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "Spec Sheet"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "Quote"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "PR"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "Sharepoint Folder"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "WA"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "Work Assigned"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "Senior Approval"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "Drawings to drafting"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "Drawings back from drafting"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "IFA"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "Add PO to spec"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "tableRow",
+								"content": [
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "taskList",
+												"content": [
+													{
+														"type": "taskItem",
+														"attrs": {
+															"checked": false
+														},
+														"content": [
+															{
+																"type": "paragraph",
+																"content": [
+																	{
+																		"type": "text",
+																		"text": "IFCd (drafter)"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "tableCell",
+										"attrs": {
+											"colspan": 1,
+											"rowspan": 1,
+											"colwidth": null
+										},
+										"content": [
+											{
+												"type": "paragraph"
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "paragraph"
+			},
+			{
+				"type": "details",
+				"attrs": {
+					"open": false
+				},
+				"content": [
+					{
+						"type": "summary",
+						"attrs": {
+							"level": 2
+						},
+						"content": [
+							{
+								"type": "text",
+								"text": "Directory"
+							}
+						]
+					},
+					{
+						"type": "paragraph",
+						"content": [
+							{
+								"type": "text",
+								"marks": [
+									{
+										"type": "link",
+										"attrs": {
+											"href": "https://www.google.com",
+											"target": "_blank",
+											"rel": "noopener noreferrer nofollow",
+											"class": null,
+											"title": null
+										}
+									}
+								],
+								"text": "test"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "paragraph"
+			},
+			{
+				"type": "details",
+				"attrs": {
+					"open": false
+				},
+				"content": [
+					{
+						"type": "summary",
+						"attrs": {
+							"level": 2
+						},
+						"content": [
+							{
+								"type": "text",
+								"text": "Notes"
+							}
+						]
+					},
+					{
+						"type": "paragraph"
+					}
+				]
+			},
+			{
+				"type": "paragraph"
+			}
+		]
+	}	
+}
