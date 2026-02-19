@@ -43,6 +43,7 @@ Notes:
 - **Search**: Quick search across title, description, and folder name.
 - **Project details editor**: Edits `project.json` fields in place with autosave.
 - **Notes editor**: Tiptap-based rich text editor with headings, lists, tables, toggles, task lists, links, and pasted images.
+- **Engineering Second Brain**: Standalone static knowledge page (`second-brain.html`) with topic sections (Standards, Instrumentation, Power).
 - **Copy project folder path**: One-click copy of the project directory path.
 
 ## How It Works
@@ -52,6 +53,7 @@ Notes:
 - Data is cached in memory and rendered in the dashboard table or calendar view.
 - Editing a field updates the in-memory data and writes back to `project.json` after a short debounce.
 - The notes editor stores its content in `project.json` under `notesDoc`.
+- The Second Brain is a normal static HTML page that you edit directly when you want to add links or notes.
 - The copy button builds the project path from the known root/building metadata and uses `resolve()` when available.
 
 ## How To Run
@@ -66,6 +68,7 @@ Option B: Use a local static server (recommended)
 1. Start any static server in the `project-dashboard` folder.
 2. Open the served URL in Chrome or Edge.
 3. Click **Select Projects Folder** and choose the main Projects root.
+4. Open **Engineering Second Brain** from the header and edit `second-brain.html` directly as needed.
 
 ## Replicating This Setup
 
@@ -77,6 +80,7 @@ Option B: Use a local static server (recommended)
 ## Key Files
 
 - `index.html` - Main UI layout.
+- `second-brain.html` - Engineering knowledge landing page.
 - `styles.css` - Styling for dashboard, editor, and controls.
 - `app.js` - Application logic, filesystem access, and editor setup.
 
