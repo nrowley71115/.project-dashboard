@@ -141,6 +141,27 @@ button.ghost {
   gap: 12px;
 }
 
+.hold-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.hold-toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.hold-filter-status {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
 .filter-btn {
   background: transparent;
   border: 1px solid var(--outline);
@@ -890,5 +911,9 @@ tbody tr.is-selected {
   .search-group {
     width: 100%;
     min-width: unset;
+  }
+
+  .hold-toggle {
+    align-self: flex-start;
   }
 }

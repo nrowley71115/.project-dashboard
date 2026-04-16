@@ -38,6 +38,7 @@ const TYPE_CLASSES = {
 };
 
 const CALENDAR_FILTERS = new Set(["calendar-current", "calendar-completed"]);
+const HIDE_HOLD_STORAGE_KEY = "project-dashboard-hide-hold";
 
 const Summary = TiptapNode.create({
   name: "summary",
@@ -135,6 +136,7 @@ const state = {
   filtered: [],
   selectedIndex: 0,
   filter: "current",
+  hideHold: true,
   searchQuery: "",
   searchResults: [],
   searchIndex: -1,
@@ -158,6 +160,8 @@ const elements = {
   tableBody: document.getElementById("project-table-body"),
   emptyState: document.getElementById("empty-state"),
   filterGroup: document.getElementById("filter-group"),
+  hideHoldToggle: document.getElementById("hide-hold-toggle"),
+  holdFilterStatus: document.getElementById("hold-filter-status"),
   dashboardView: document.getElementById("dashboard-view"),
   calendarView: document.getElementById("calendar-view"),
   calendarScroll: document.getElementById("calendar-scroll"),
@@ -191,6 +195,7 @@ function init() {
   }
 
   bindEvents();
+  restoreHoldPreference();
   restoreRootHandle();
 }
 
@@ -205,6 +210,18 @@ function bindEvents() {
       renderDashboard();
     });
   });
+
+  if (elements.hideHoldToggle) {
+    elements.hideHoldToggle.addEventListener("change", (event) => {
+      state.hideHold = !!event.target.checked;
+      saveHoldPreference(state.hideHold);
+      state.selectedIndex = 0;
+      if (state.searchQuery) {
+        updateSearchResults();
+      }
+      renderDashboard();
+    });
+  }
 
   elements.searchInput.addEventListener("input", (event) => {
     state.searchQuery = event.target.value.trim().toLowerCase();
@@ -484,6 +501,8 @@ function sortProjects(a, b) {
 }
 
 function renderDashboard() {
+  updateHoldFilterStatus();
+
   if (CALENDAR_FILTERS.has(state.filter)) {
     elements.dashboardView.classList.add("is-hidden");
     elements.calendarView.classList.remove("is-hidden");
@@ -496,6 +515,9 @@ function renderDashboard() {
   state.filtered = state.projects.filter((project) => {
     const matchesStatus = state.filter === "current" ? !project.isCompleted : project.isCompleted;
     if (!matchesStatus) {
+      return false;
+    }
+    if (!isProjectVisible(project)) {
       return false;
     }
     return true;
@@ -520,7 +542,7 @@ function renderDashboard() {
       <td>${escapeHtml(project.data.type || project.rootName)}</td>
       <td>${escapeHtml(project.data.building || project.buildingName)}</td>
       <td>${formatPercent(project.data.percentComplete)}</td>
-      <td>${escapeHtml(project.data.status || "")}</td>
+      <td>${escapeHtml(getProjectStatus(project))}</td>
       <td>${escapeHtml(project.data.assignedDate || "")}</td>
       <td>${escapeHtml(project.data.ecDate || "")}</td>
       <td>${escapeHtml(project.data.actualEcDate || "")}</td>
@@ -576,7 +598,9 @@ function updateSearchResults() {
     return;
   }
 
-  const results = state.projects.filter((project) => project.searchText.includes(query));
+  const results = state.projects.filter(
+    (project) => project.searchText.includes(query) && isProjectVisible(project),
+  );
   state.searchResults = results.slice(0, 8);
   state.searchIndex = state.searchResults.length ? 0 : -1;
   elements.searchCount.textContent = results.length ? results.length + " results" : "0 results";
@@ -1196,7 +1220,10 @@ function renderCalendar() {
   const showCompleted = state.filter === "calendar-completed";
 
   const projects = state.projects
-    .filter((project) => (showCompleted ? project.isCompleted : !project.isCompleted))
+    .filter(
+      (project) =>
+        (showCompleted ? project.isCompleted : !project.isCompleted) && isProjectVisible(project),
+    )
     .map((project) => {
       const dateValue = normalizeDateValue(project.data.ecDate);
       return {
@@ -2485,4 +2512,74 @@ async function loadRootHandle() {
     request.onsuccess = () => resolve(request.result || null);
     request.onerror = () => reject(request.error);
   });
+}
+
+function restoreHoldPreference() {
+  try {
+    const raw = localStorage.getItem(HIDE_HOLD_STORAGE_KEY);
+    state.hideHold = raw === null ? true : raw === "true";
+  } catch (error) {
+    state.hideHold = true;
+  }
+
+  if (elements.hideHoldToggle) {
+    elements.hideHoldToggle.checked = state.hideHold;
+  }
+}
+
+function saveHoldPreference(value) {
+  try {
+    localStorage.setItem(HIDE_HOLD_STORAGE_KEY, value ? "true" : "false");
+  } catch (error) {
+    // Ignore storage failures and keep runtime state only.
+  }
+}
+
+function getProjectStatus(project) {
+  const data = project && project.data ? project.data : {};
+  const direct = data.status;
+  if (direct !== undefined && direct !== null && String(direct).trim() !== "") {
+    return String(direct).trim();
+  }
+
+  const legacy = data.Status;
+  if (legacy !== undefined && legacy !== null && String(legacy).trim() !== "") {
+    return String(legacy).trim();
+  }
+
+  return "";
+}
+
+function isProjectOnHold(project) {
+  const status = getProjectStatus(project).toUpperCase();
+  return status.includes("HOLD");
+}
+
+function isProjectVisible(project) {
+  if (!state.hideHold) {
+    return true;
+  }
+
+  return !isProjectOnHold(project);
+}
+
+function updateHoldFilterStatus() {
+  if (!elements.holdFilterStatus) {
+    return;
+  }
+
+  const showCompleted = state.filter === "completed" || state.filter === "calendar-completed";
+  const scopedProjects = state.projects.filter((project) =>
+    showCompleted ? project.isCompleted : !project.isCompleted,
+  );
+  const holdCount = scopedProjects.filter((project) => isProjectOnHold(project)).length;
+
+  if (!holdCount) {
+    elements.holdFilterStatus.textContent = "No HOLD projects in this view";
+    return;
+  }
+
+  elements.holdFilterStatus.textContent = state.hideHold
+    ? `HOLD hidden: ${holdCount}`
+    : `HOLD shown: ${holdCount}`;
 }

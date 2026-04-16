@@ -1,0 +1,1 @@
+B121 Cogen has a 40kva UPS. It's a different design that takes in 480V directly, and has a separate battery charger. It also has DC loads. It's an Ametek UPS system. Our contact with them is Rick Kolster at rick.kolster@ametek.com and Jim Jacobs <jim.jacobs@ametek.com>.

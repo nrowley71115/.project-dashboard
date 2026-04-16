@@ -5,7 +5,9 @@ import socket
 import socketserver
 import webbrowser
 
+PROJECT_DASHBOARD_DIR = r"C:\Users\u144243\OneDrive - Eastman Chemical Company\Documents\..Projects\.project-dashboard"
 DEFAULT_PORT = 8000
+PORT_SCAN_RANGE = 100
 BUILD_TAG = "20260416b"
 
 
@@ -17,12 +19,19 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
         super().end_headers()
 
 
+def is_port_open(port: int) -> bool:
+    try:
+        with socket.create_connection(("127.0.0.1", port), timeout=0.25):
+            return True
+    except OSError:
+        return False
+
+
 def find_open_port(start_port: int) -> int:
     port = start_port
-    while port < start_port + 100:
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
-            if probe.connect_ex(("127.0.0.1", port)) != 0:
-                return port
+    while port < start_port + PORT_SCAN_RANGE:
+        if not is_port_open(port):
+            return port
         port += 1
     return start_port
 
@@ -39,7 +48,7 @@ def file_sha256(path: str) -> str:
 
 
 def main() -> None:
-    base_dir = os.path.dirname(os.path.abspath(__file__))
+    base_dir = PROJECT_DASHBOARD_DIR
     os.chdir(base_dir)
 
     port = find_open_port(DEFAULT_PORT)
