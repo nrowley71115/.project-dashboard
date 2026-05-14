@@ -43,7 +43,8 @@ Notes:
 - **Search**: Quick search across title, description, and folder name.
 - **Project details editor**: Edits `project.json` fields in place with autosave.
 - **Notes editor**: Tiptap-based rich text editor with headings, lists, tables, toggles, task lists, links, and pasted images.
-- **Engineering Second Brain**: Standalone static knowledge page (`second-brain.html`) with topic sections (Standards, Instrumentation, Power).
+- **Engineering Second Brain**: Standalone wiki-style knowledge page (`second-brain.html`) with topic navigation and search for standards, instrumentation, technology notes, power, and field references.
+- **Other Tasks workspace**: Separate locally stored task dashboard for non-project work with quick entry, notes, target dates, and completion tracking.
 - **Copy project folder path**: One-click copy of the project directory path.
 
 ## How It Works
@@ -53,6 +54,7 @@ Notes:
 - Data is cached in memory and rendered in the dashboard table or calendar view.
 - Editing a field updates the in-memory data and writes back to `project.json` after a short debounce.
 - The notes editor stores its content in `project.json` under `notesDoc`.
+- The Other Tasks workspace stores its data in browser `localStorage`, separate from project folders.
 - The Second Brain is a normal static HTML page that you edit directly when you want to add links or notes.
 - The copy button builds the project path from the known root/building metadata and uses `resolve()` when available.
 
@@ -81,8 +83,10 @@ Option B: Use a local static server (recommended)
 
 - `index.html` - Main UI layout.
 - `second-brain.html` - Engineering knowledge landing page.
+- `other-tasks.html` - Quick-capture dashboard for non-project tasks.
 - `styles.css` - Styling for dashboard, editor, and controls.
 - `app.js` - Application logic, filesystem access, and editor setup.
+- `other-tasks.js` - Local task storage, filtering, and detail editing logic.
 
 ## Browser Requirements
 

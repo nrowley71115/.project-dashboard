@@ -39,6 +39,10 @@ body::before {
   animation: page-in 0.7s ease both;
 }
 
+.other-tasks-page .app {
+  padding: 28px 24px 48px;
+}
+
 @keyframes page-in {
   from {
     opacity: 0;
@@ -56,6 +60,10 @@ body::before {
   gap: 24px;
   align-items: flex-end;
   margin-bottom: 32px;
+}
+
+.other-tasks-page .app-header {
+  margin-bottom: 20px;
 }
 
 .header-actions {
@@ -134,6 +142,11 @@ button.ghost {
   background: var(--surface);
   border-radius: 20px;
   box-shadow: var(--shadow);
+}
+
+.other-tasks-page .controls {
+  margin-bottom: 16px;
+  padding: 10px 16px;
 }
 
 .filter-group {
@@ -792,6 +805,251 @@ tbody tr.is-selected {
   line-height: 1.5;
 }
 
+.second-brain-page .app {
+  max-width: 1360px;
+}
+
+.brain-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(280px, 0.9fr);
+  gap: 20px;
+  margin-bottom: 24px;
+  padding: 24px 28px;
+  background:
+    linear-gradient(135deg, rgba(237, 220, 201, 0.78), rgba(255, 255, 255, 0.94)),
+    radial-gradient(circle at top right, rgba(154, 95, 43, 0.1), transparent 42%);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+
+.brain-hero h2 {
+  margin: 8px 0 10px;
+  font-family: "EB Garamond", "Times New Roman", serif;
+  font-size: 34px;
+  line-height: 1.05;
+}
+
+.brain-hero p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 72ch;
+}
+
+.brain-hero-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.brain-hero-stat {
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 18px;
+  border: 1px solid rgba(215, 203, 189, 0.7);
+}
+
+.brain-hero-stat span {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.brain-hero-stat strong {
+  font-family: "EB Garamond", "Times New Roman", serif;
+  font-size: 28px;
+}
+
+.wiki-shell {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.wiki-sidebar {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wiki-sidebar-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.wiki-sidebar-card h2,
+.wiki-sidebar-card h3 {
+  margin: 8px 0 0;
+  font-family: "EB Garamond", "Times New Roman", serif;
+}
+
+.wiki-sidebar-card h2 {
+  font-size: 28px;
+}
+
+.wiki-sidebar-card h3 {
+  font-size: 22px;
+}
+
+.wiki-sidebar-note p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.wiki-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.wiki-search-block {
+  margin-top: 16px;
+}
+
+.wiki-search-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid rgba(215, 203, 189, 0.8);
+  border-radius: 16px;
+  background: rgba(248, 245, 241, 0.92);
+}
+
+.wiki-search-input input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font: inherit;
+  color: var(--ink);
+}
+
+.wiki-search-clear {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.wiki-search-status {
+  min-height: 18px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.wiki-nav a {
+  text-decoration: none;
+  color: var(--ink);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(215, 203, 189, 0.75);
+  background: rgba(248, 245, 241, 0.92);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.wiki-nav a:hover,
+.wiki-nav a:focus-visible {
+  background: rgba(237, 220, 201, 0.78);
+  border-color: rgba(154, 95, 43, 0.28);
+  transform: translateX(2px);
+}
+
+.wiki-content {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.wiki-empty-state {
+  margin: 0;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow);
+  color: var(--muted);
+}
+
+.wiki-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 26px;
+  padding: 26px;
+  box-shadow: var(--shadow);
+  scroll-margin-top: 24px;
+}
+
+.wiki-section-heading {
+  margin-bottom: 18px;
+}
+
+.wiki-kicker {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.wiki-section h2 {
+  margin: 0 0 8px;
+  font-family: "EB Garamond", "Times New Roman", serif;
+  font-size: 32px;
+}
+
+.wiki-section-heading p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.wiki-entry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.wiki-entry-grid-single {
+  grid-template-columns: minmax(280px, 1fr);
+}
+
+.wiki-entry {
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(248, 245, 241, 0.9), rgba(255, 255, 255, 1));
+  border: 1px solid rgba(215, 203, 189, 0.78);
+}
+
+.wiki-entry-highlight {
+  background: linear-gradient(180deg, rgba(252, 222, 222, 0.45), rgba(255, 255, 255, 1));
+}
+
+.wiki-entry h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.wiki-entry ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.wiki-entry li + li {
+  margin-top: 8px;
+}
+
 .brain-banner {
   margin-bottom: 16px;
   padding: 12px 14px;
@@ -915,5 +1173,177 @@ tbody tr.is-selected {
 
   .hold-toggle {
     align-self: flex-start;
+  }
+
+  .brain-hero,
+  .wiki-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .wiki-sidebar {
+    position: static;
+  }
+
+  .brain-hero,
+  .wiki-section,
+  .wiki-sidebar-card {
+    padding: 20px;
+  }
+}
+
+.tasks-controls {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(260px, 0.9fr);
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.task-entry-card,
+.task-summary-card {
+  margin-bottom: 0;
+}
+
+.task-entry-header {
+  align-items: flex-start;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.task-form-span-2 {
+  grid-column: span 2;
+}
+
+.task-form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.task-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.task-summary-item {
+  border-radius: 16px;
+  padding: 14px;
+  background: linear-gradient(180deg, rgba(237, 220, 201, 0.45), rgba(255, 255, 255, 0.9));
+  border: 1px solid rgba(215, 203, 189, 0.7);
+}
+
+.task-summary-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.task-summary-value {
+  font-size: 28px;
+  font-family: "EB Garamond", "Times New Roman", serif;
+}
+
+.task-fields .hold-toggle {
+  margin-top: 8px;
+}
+
+.task-notes-editor {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid var(--outline);
+  font-size: 14px;
+  font-family: "Work Sans", "Segoe UI", sans-serif;
+  background: #fff;
+  resize: vertical;
+  min-height: 200px;
+}
+
+.task-notes-editor-compact {
+  min-height: 120px;
+}
+
+.compact-table th,
+.compact-table td {
+  padding: 10px 12px;
+  font-size: 13px;
+  white-space: normal;
+  vertical-align: top;
+}
+
+.compact-table th {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+}
+
+.compact-table {
+  min-width: 100%;
+}
+
+.task-status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.task-status-open {
+  background: rgba(214, 235, 255, 0.85);
+  color: #16507a;
+}
+
+.task-status-due-soon {
+  background: rgba(249, 240, 200, 0.95);
+  color: #7a5a0d;
+}
+
+.task-status-overdue {
+  background: rgba(252, 222, 222, 0.95);
+  color: #8a2e2e;
+}
+
+.task-status-completed {
+  background: rgba(220, 245, 228, 0.95);
+  color: #256044;
+}
+
+.task-row-overdue {
+  background: linear-gradient(90deg, rgba(252, 222, 222, 0.62), rgba(255, 255, 255, 0));
+}
+
+.task-row-completed {
+  opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .task-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .task-form-span-2 {
+    grid-column: span 1;
+  }
+
+  .task-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .task-form-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }

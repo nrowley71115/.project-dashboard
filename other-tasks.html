@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Other Tasks</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="other-tasks-page">
+    <div class="app">
+      <header class="app-header">
+        <div class="title-block">
+          <span class="eyebrow">Quick Tasks</span>
+          <h1>Other Tasks</h1>
+          <p class="status">Capture quick tasks, track completion, and review history.</p>
+        </div>
+        <div class="header-actions">
+          <div class="toolbar">
+            <button id="task-add" class="primary">+ Add Task</button>
+            <a href="index.html" class="ghost link-button">Back to Dashboard</a>
+          </div>
+        </div>
+      </header>
+
+      <section class="controls tasks-controls">
+        <div class="search-group">
+          <label class="search-label" for="task-search">Search</label>
+          <div class="search-input">
+            <input
+              id="task-search"
+              type="search"
+              placeholder="Search tasks (Ctrl+K)"
+              autocomplete="off"
+            />
+            <span id="task-search-count" class="search-count"></span>
+          </div>
+        </div>
+        <label class="hold-toggle" for="show-completed-toggle">
+          <input id="show-completed-toggle" type="checkbox" />
+          <span>Show completed tasks</span>
+        </label>
+      </section>
+
+      <section class="task-workspace">
+        <article class="project-card task-entry-card">
+          <div class="card-header task-entry-header">
+            <div>
+              <h3>Add Task</h3>
+              <p class="status">Saved locally in this browser. Click any task below to edit it later.</p>
+            </div>
+            <span id="task-save-status" class="copy-status" aria-live="polite"></span>
+          </div>
+
+          <form id="task-form" class="task-form" autocomplete="off">
+            <div class="project-fields">
+              <div class="field task-form-span-2">
+                <label for="task-form-description">Description</label>
+                <input id="task-form-description" type="text" required />
+              </div>
+              <div class="field">
+                <label for="task-form-building">Building (optional)</label>
+                <input id="task-form-building" type="text" />
+              </div>
+              <div class="field">
+                <label for="task-form-date-entered">Date Entered</label>
+                <input id="task-form-date-entered" type="date" />
+              </div>
+              <div class="field">
+                <label for="task-form-target-date">Projected Completion</label>
+                <input id="task-form-target-date" type="date" />
+              </div>
+              <div class="field task-form-span-2">
+                <label for="task-form-notes">Notes</label>
+                <textarea
+                  id="task-form-notes"
+                  class="task-notes-editor task-notes-editor-compact"
+                  rows="4"
+                  placeholder="Add notes, next actions, or context..."
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="task-form-actions">
+              <button type="submit" class="primary">Save Task</button>
+              <button type="button" id="task-form-reset" class="ghost">Clear</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="project-card task-summary-card">
+          <h3>Snapshot</h3>
+          <div class="task-summary-grid">
+            <div class="task-summary-item">
+              <span class="task-summary-label">Open</span>
+              <strong id="task-open-count" class="task-summary-value">0</strong>
+            </div>
+            <div class="task-summary-item">
+              <span class="task-summary-label">Completed</span>
+              <strong id="task-completed-count" class="task-summary-value">0</strong>
+            </div>
+            <div class="task-summary-item">
+              <span class="task-summary-label">Due Soon</span>
+              <strong id="task-due-soon-count" class="task-summary-value">0</strong>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="task-dashboard-view" class="view">
+        <div class="table-wrap">
+          <table class="compact-table">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Building</th>
+                <th>Date Entered</th>
+                <th>Target Date</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="task-table-body"></tbody>
+          </table>
+        </div>
+        <p id="task-empty" class="empty-state is-hidden">No tasks match this view.</p>
+      </section>
+
+      <section id="task-detail-view" class="view is-hidden">
+        <div class="project-header">
+          <button id="task-back" class="ghost">Back to Tasks</button>
+          <div>
+            <h2 id="task-title">Task</h2>
+            <p id="task-subtitle" class="status"></p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="card-header">
+            <h3>Task Details</h3>
+            <button id="task-delete" class="ghost" type="button">Delete Task</button>
+          </div>
+          <div class="project-fields task-fields">
+            <div class="field">
+              <label for="task-detail-description">Description</label>
+              <input id="task-detail-description" type="text" />
+            </div>
+            <div class="field">
+              <label for="task-detail-building">Building (optional)</label>
+              <input id="task-detail-building" type="text" />
+            </div>
+            <div class="field">
+              <label for="task-detail-date-entered">Date Entered</label>
+              <input id="task-detail-date-entered" type="date" />
+            </div>
+            <div class="field">
+              <label for="task-detail-target-date">Target Completion</label>
+              <input id="task-detail-target-date" type="date" />
+            </div>
+            <label class="hold-toggle" for="task-detail-completed">
+              <input id="task-detail-completed" type="checkbox" />
+              <span>Mark as completed</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3>Task Notes</h3>
+          <div class="notes-hint">Notes are saved automatically.</div>
+          <textarea id="task-detail-notes" class="task-notes-editor" rows="8" placeholder="Add notes..."></textarea>
+        </div>
+      </section>
+    </div>
+
+    <script src="other-tasks.js"></script>
+  </body>
+</html>

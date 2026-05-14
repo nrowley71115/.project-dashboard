@@ -6,13 +6,13 @@
     <title>Engineering Second Brain</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="second-brain-page">
     <div class="app">
       <header class="app-header">
         <div class="title-block">
           <span class="eyebrow">Engineering Knowledge</span>
           <h1>Engineering Second Brain</h1>
-          <p class="status">Static knowledge page for standards, references, and reusable engineering notes.</p>
+          <p class="status">Wiki-style notes hub for standards, technology-specific references, power systems, and field lessons learned.</p>
         </div>
         <div class="header-actions">
           <div class="toolbar">
@@ -21,60 +21,233 @@
         </div>
       </header>
 
-      <p class="brain-intro">
-        This page is intentionally simple and static. Edit this HTML directly whenever you want to add links,
-        references, or notes.
-      </p>
+      <section class="brain-hero">
+        <div>
+          <span class="eyebrow">Reference Library</span>
+          <h2>Jump by topic and keep adding notes where they belong.</h2>
+          <p>
+            This page is still a local static file, but the layout now works more like a wiki: use the topic rail to
+            jump to a section, then keep expanding each topic with new notes, links, model numbers, and contacts.
+          </p>
+        </div>
+        <div class="brain-hero-stats" aria-label="Knowledge base summary">
+          <div class="brain-hero-stat">
+            <span>Topics</span>
+            <strong>6</strong>
+          </div>
+          <div class="brain-hero-stat">
+            <span>New Notes</span>
+            <strong>UPS + AOOV</strong>
+          </div>
+          <div class="brain-hero-stat">
+            <span>Use Case</span>
+            <strong>Fast lookup</strong>
+          </div>
+        </div>
+      </section>
 
-      <section class="brain-layout">
-        <article class="brain-card">
-          <h2>Standards</h2>
-          <p>Site standards, industry codes, and trusted references.</p>
-          <ul>
-            <li><a href="https://eastmanchem.sharepoint.com/sites/ets165/TEX%20TEESTANS/K-Book%20-%20Instruments/KG%20-%20General/KGD-20%20-%20Instrument%20Identification%20for%20Flow%20Sheet%20and%20P%20and%20I%20Diagrams.pdf" target="_blank" rel="noopener noreferrer">KGD-20 - Instrument Identification for Flowsheets and P&amp;I Diagrams</a></li>
-            <li><a href="https://eastmanchem.sharepoint.com/sites/ets165/StandardsProcedures/Lists/TXO%20Engineering%20Standards/Piping%20Active.aspx?FilterField1=Status&FilterValue1=Active&FilterType1=Choice&FilterDisplay1=Active&FilterField2=kddt&FilterValue2=PLE%20%2D%20Line%20Specifications&FilterType2=Text&FilterDisplay2=PLE%20%2D%20Line%20Specifications&viewid=8f19d4d2%2D2ed0%2D454c%2Dbd91%2D68cf34aa9ff1" target="_blank" rel="noopener noreferrer">Piping Standards - PLE Line Specifications (Active)</a></li>
-            <li>Add quick notes for common requirements.</li>
-          </ul>
-        </article>
+      <section class="wiki-shell">
+        <aside class="wiki-sidebar">
+          <div class="wiki-sidebar-card">
+            <span class="eyebrow">Topics</span>
+            <h2>Browse</h2>
+            <div class="wiki-search-block">
+              <label class="search-label" for="brain-search">Search</label>
+              <div class="wiki-search-input">
+                <input id="brain-search" type="search" placeholder="Search notes, GMNs, models, contacts" autocomplete="off" />
+                <button id="brain-search-clear" type="button" class="ghost wiki-search-clear">Clear</button>
+              </div>
+              <p id="brain-search-status" class="wiki-search-status" aria-live="polite"></p>
+            </div>
+            <nav class="wiki-nav" aria-label="Second Brain topics">
+              <a href="#standards">Standards</a>
+              <a href="#instrumentation">Instrumentation</a>
+              <a href="#power">Power Systems</a>
+              <a href="#aoov">AOOV</a>
+              <a href="#deluge">Deluge Systems</a>
+              <a href="#on-call">On Call Contacts</a>
+            </nav>
+          </div>
 
-        <article class="brain-card">
-          <h2>Instrumentation</h2>
-          <p>Instrument selection, loop notes, and field troubleshooting patterns.</p>
-          <ul>
-            <li><a href="https://eastmanchem.sharepoint.com/sites/ets2366/stds/PIP%20PCCTE001.pdf" target="_blank" rel="noopener noreferrer">PIP PCCTE001 - Temperature Measurement Design Criteria</a></li>
-            <li><a href="https://eastmanchem.sharepoint.com/sites/ets2366/stds/PIP%20PCETE001.pdf" target="_blank" rel="noopener noreferrer">PIP PCETE001 - Temperature Measurement Guidelines</a></li>
-            <li><a href="https://eastmanchem.sharepoint.com/sites/ets2366/stds/PIP%20PCFTE100.pdf" target="_blank" rel="noopener noreferrer">PIP PCFTE100 - Thermowell Fabrication Details</a></li>
-            <li><a href="https://eastmanchem.sharepoint.com/sites/ets2366/stds/PIP%20PCITE200.pdf" target="_blank" rel="noopener noreferrer">PIP PCITE200 - RTD/Thermocouple Installation Details</a></li>
-            <li>Add lessons learned and reusable checklists.</li>
-          </ul>
-        </article>
+          <div class="wiki-sidebar-card wiki-sidebar-note">
+            <h3>How to add more</h3>
+            <p>Keep each topic as its own section and add new note cards under the matching heading instead of one long list.</p>
+          </div>
+        </aside>
 
-        <article class="brain-card">
-          <h2>On Call Contacts</h2>
-          <p>On-call schedules and frequently contacted shift personnel.</p>
-          <ul>
-            <li><a href="https://eastmanchem.sharepoint.com/sites/on-callsch/SitePages/HomePage.aspx?OR=Teams-HL&CT=1689712223520&SafelinksUrl=https%3a%2f%2feastmanchem.sharepoint.com%2fsites%2fon-callsch%2fSitePages%2fHomePage.aspx" target="_blank" rel="noopener noreferrer">On-Call Schedule (SharePoint)</a></li>
-            <li><strong>Centralized Electrical Shift</strong>
-              <ul>
-                <li>Cell: (903) 557-0340</li>
-                <li>Home: (903) 237-5243</li>
-              </ul>
-            </li>
-          </ul>
-        </article>
+        <div class="wiki-content">
+          <p id="wiki-empty-state" class="wiki-empty-state is-hidden">No notes match that search yet.</p>
 
-        <article class="brain-card">
-          <h2>Power (Transformers, ATS, UPS)</h2>
-          <p>Power system decisions, checklists, and commissioning guidance.</p>
-          <ul>
-            <li>Acopian redundant power supplies are used for applicable systems.</li>
-            <li>Set outputs to 26 VDC instead of 24 VDC to account for voltage drop.</li>
-            <li>Acopian offers linear regulated and switching regulated redundant power supplies.</li>
-            <li>We use linear regulated units for signal purity and stability, accepting larger size and lower efficiency.</li>
-            <li><a href="https://www.acopian.com/single-redunpkg-m.html" target="_blank" rel="noopener noreferrer">Acopian redundant power supply reference</a></li>
-          </ul>
-        </article>
+          <section id="standards" class="wiki-section">
+            <div class="wiki-section-heading">
+              <span class="wiki-kicker">Core References</span>
+              <h2>Standards</h2>
+              <p>Site standards, engineering procedures, and reusable requirement notes.</p>
+            </div>
+
+            <div class="wiki-entry-grid">
+              <article class="wiki-entry">
+                <h3>Drawing and Tagging References</h3>
+                <ul>
+                  <li><a href="https://eastmanchem.sharepoint.com/sites/ets165/TEX%20TEESTANS/K-Book%20-%20Instruments/KG%20-%20General/KGD-20%20-%20Instrument%20Identification%20for%20Flow%20Sheet%20and%20P%20and%20I%20Diagrams.pdf" target="_blank" rel="noopener noreferrer">KGD-20 - Instrument Identification for Flowsheets and P&amp;I Diagrams</a></li>
+                  <li><a href="https://eastmanchem.sharepoint.com/sites/ets165/StandardsProcedures/Lists/TXO%20Engineering%20Standards/Piping%20Active.aspx?FilterField1=Status&FilterValue1=Active&FilterType1=Choice&FilterDisplay1=Active&FilterField2=kddt&FilterValue2=PLE%20%2D%20Line%20Specifications&FilterType2=Text&FilterDisplay2=PLE%20%2D%20Line%20Specifications&viewid=8f19d4d2%2D2ed0%2D454c%2Dbd91%2D68cf34aa9ff1" target="_blank" rel="noopener noreferrer">Piping Standards - PLE Line Specifications (Active)</a></li>
+                </ul>
+              </article>
+
+              <article class="wiki-entry">
+                <h3>Working Notes</h3>
+                <ul>
+                  <li>Use this section for quick requirements you find yourself re-checking during design reviews.</li>
+                  <li>Add project-independent standards notes here instead of burying them in individual project folders.</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section id="instrumentation" class="wiki-section">
+            <div class="wiki-section-heading">
+              <span class="wiki-kicker">Field Design</span>
+              <h2>Instrumentation</h2>
+              <p>Instrument selection, installation references, and reusable troubleshooting guidance.</p>
+            </div>
+
+            <div class="wiki-entry-grid">
+              <article class="wiki-entry">
+                <h3>Temperature Measurement References</h3>
+                <ul>
+                  <li><a href="https://eastmanchem.sharepoint.com/sites/ets2366/stds/PIP%20PCCTE001.pdf" target="_blank" rel="noopener noreferrer">PIP PCCTE001 - Temperature Measurement Design Criteria</a></li>
+                  <li><a href="https://eastmanchem.sharepoint.com/sites/ets2366/stds/PIP%20PCETE001.pdf" target="_blank" rel="noopener noreferrer">PIP PCETE001 - Temperature Measurement Guidelines</a></li>
+                  <li><a href="https://eastmanchem.sharepoint.com/sites/ets2366/stds/PIP%20PCFTE100.pdf" target="_blank" rel="noopener noreferrer">PIP PCFTE100 - Thermowell Fabrication Details</a></li>
+                  <li><a href="https://eastmanchem.sharepoint.com/sites/ets2366/stds/PIP%20PCITE200.pdf" target="_blank" rel="noopener noreferrer">PIP PCITE200 - RTD/Thermocouple Installation Details</a></li>
+                </ul>
+              </article>
+
+              <article class="wiki-entry">
+                <h3>Reusable Prompts</h3>
+                <ul>
+                  <li>Add loop design reminders, instrument sizing assumptions, and install lessons learned here.</li>
+                  <li>Keep device-specific notes in a technology section such as AOOV unless the note is tied to a design standard.</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section id="power" class="wiki-section">
+            <div class="wiki-section-heading">
+              <span class="wiki-kicker">Transformers, ATS, UPS</span>
+              <h2>Power Systems</h2>
+              <p>UPS references, redundant power supply notes, and packaged equipment reminders.</p>
+            </div>
+
+            <div class="wiki-entry-grid">
+              <article class="wiki-entry">
+                <h3>UPS Notes</h3>
+                <ul>
+                  <li>B121 Cogen has a 40 kVA UPS with a different design that takes in 480 V directly.</li>
+                  <li>The system has a separate battery charger and also serves DC loads.</li>
+                  <li>The UPS system is Ametek.</li>
+                  <li>Contacts: <a href="mailto:rick.kolster@ametek.com">Rick Kolster</a> and <a href="mailto:jim.jacobs@ametek.com">Jim Jacobs</a>.</li>
+                </ul>
+              </article>
+
+              <article class="wiki-entry">
+                <h3>Acopian Redundant Power Supplies</h3>
+                <ul>
+                  <li>Acopian redundant power supplies are used for applicable systems.</li>
+                  <li>Set outputs to 26 VDC instead of 24 VDC to account for voltage drop.</li>
+                  <li>Acopian offers linear regulated and switching regulated redundant power supplies.</li>
+                  <li>We use linear regulated units for signal purity and stability, accepting larger size and lower efficiency.</li>
+                  <li>Model breakdown: B16497 is the redundant case that houses two W16497A internal power supplies.</li>
+                  <li>Typical spec notes: 26 VDC output, 46 amp, with amp meters, wall mounted, switching regulated.</li>
+                  <li>Joe Chism has spare W16497A units. A GMN is being investigated for these units.</li>
+                  <li><a href="https://www.acopian.com/single-redunpkg-m.html" target="_blank" rel="noopener noreferrer">Acopian redundant power supply reference</a></li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section id="aoov" class="wiki-section">
+            <div class="wiki-section-heading">
+              <span class="wiki-kicker">Technology Notes</span>
+              <h2>AOOV</h2>
+              <p>Automatic on-off valve references, sourcing notes, and remembered component pairings.</p>
+            </div>
+
+            <div class="wiki-entry-grid">
+              <article class="wiki-entry">
+                <h3>AOOV Procurement</h3>
+                <ul>
+                  <li><a href="mailto:travis@newgenproducts.com">Travis Bruce</a> at NewGen Products is the contact for purchasing AOOVs.</li>
+                  <li>A Habonim ball valve and Rotork actuator have been specified through him before.</li>
+                </ul>
+              </article>
+
+              <article class="wiki-entry">
+                <h3>Section Notes</h3>
+                <ul>
+                  <li>Use this section for actuator, valve body, solenoid, and vendor combinations that repeat across projects.</li>
+                  <li>Add sizing reminders, preferred assemblies, and site-specific lessons learned here.</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section id="deluge" class="wiki-section">
+            <div class="wiki-section-heading">
+              <span class="wiki-kicker">Protection Systems</span>
+              <h2>Deluge Systems</h2>
+              <p>Device references, standard drawing notes, and replacement part reminders.</p>
+            </div>
+
+            <div class="wiki-entry-grid">
+              <article class="wiki-entry wiki-entry-highlight">
+                <h3>Deluge Solenoid</h3>
+                <ul>
+                  <li>Standard drawing solenoid: model EF8300G058RU.</li>
+                  <li>GMN: 3079026.</li>
+                  <li><a href="https://sap-bip.emn.com/fiori#IndirectMaterialSearch-search&//Detail/3079026/0200" target="_blank" rel="noopener noreferrer">SAP indirect material reference</a></li>
+                  <li>Configuration: 120 VAC, 3-way valve.</li>
+                </ul>
+              </article>
+
+              <article class="wiki-entry">
+                <h3>Section Notes</h3>
+                <ul>
+                  <li>Use this area for deluge release components, trim details, and standard drawing exceptions.</li>
+                  <li>Add common device GMNs here so they are searchable without opening a prior project package.</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section id="on-call" class="wiki-section">
+            <div class="wiki-section-heading">
+              <span class="wiki-kicker">Operations Support</span>
+              <h2>On Call Contacts</h2>
+              <p>On-call schedules and frequently contacted shift personnel.</p>
+            </div>
+
+            <div class="wiki-entry-grid">
+              <article class="wiki-entry">
+                <h3>Schedules</h3>
+                <ul>
+                  <li><a href="https://eastmanchem.sharepoint.com/sites/on-callsch/SitePages/HomePage.aspx?OR=Teams-HL&CT=1689712223520&SafelinksUrl=https%3a%2f%2feastmanchem.sharepoint.com%2fsites%2fon-callsch%2fSitePages%2fHomePage.aspx" target="_blank" rel="noopener noreferrer">On-Call Schedule (SharePoint)</a></li>
+                </ul>
+              </article>
+
+              <article class="wiki-entry">
+                <h3>Centralized Electrical Shift</h3>
+                <ul>
+                  <li>Cell: (903) 557-0340</li>
+                  <li>Home: (903) 237-5243</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+        </div>
       </section>
     </div>
+
+    <script src="second-brain.js"></script>
   </body>
 </html>
