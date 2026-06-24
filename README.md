@@ -46,6 +46,7 @@ Notes:
 - **Engineering Second Brain**: Standalone wiki-style knowledge page (`second-brain.html`) with topic navigation and search for standards, instrumentation, technology notes, power, and field references.
 - **Other Tasks workspace**: Separate locally stored task dashboard for non-project work with quick entry, notes, target dates, and completion tracking.
 - **Copy project folder path**: One-click copy of the project directory path.
+- **SharePoint shortcut**: Opens the derived SharePoint folder for supported job numbers and project types.
 
 ## How It Works
 
@@ -57,6 +58,7 @@ Notes:
 - The Other Tasks workspace stores its data in browser `localStorage`, separate from project folders.
 - The Second Brain is a normal static HTML page that you edit directly when you want to add links or notes.
 - The copy button builds the project path from the known root/building metadata and uses `resolve()` when available.
+- The SharePoint button derives a folder URL from the project job number (`title` in current data, or `jobNo` if present) plus the project type.
 
 ## How To Run
 

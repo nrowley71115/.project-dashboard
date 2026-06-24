@@ -13,6 +13,12 @@ import { Image } from "https://esm.sh/@tiptap/extension-image";
 const ROOT_FOLDERS = ["EI", "SCP", "SER", "WO"];
 const ROOT_BASE_PATH = "C:\\Users\\u144243\\OneDrive - Eastman Chemical Company\\Documents\\..Projects";
 const COMPLETED_FOLDERS = new Set(["complete", "completed"]);
+const SHAREPOINT_BASES = {
+  workOrders: "https://txoeng.eastman.com/sites/ts2240/PlantSupport/Work%20Orders1/",
+  engineeringStudies: "https://txoeng.eastman.com/sites/ts2240/Engineering%20Studies/",
+  scp: "https://txoeng.eastman.com/sites/ts2240/PlantSupport/Active%20SCPs/",
+  ser: "https://txoeng.eastman.com/sites/ts2240/SERs/",
+};
 const FIELD_ORDER = [
   { key: "title", label: "Title" },
   { key: "description", label: "Description" },
@@ -179,6 +185,7 @@ const elements = {
   tableDelCol: document.getElementById("table-del-col"),
   tableDel: document.getElementById("table-del"),
   openProjectFolder: document.getElementById("open-project-folder"),
+  openSharepoint: document.getElementById("open-sharepoint"),
   copyStatus: document.getElementById("copy-status"),
 };
 
@@ -284,6 +291,10 @@ function bindEvents() {
   elements.openProjectFolder.addEventListener("click", () => {
     copyProjectFolderPath();
   });
+
+  if (elements.openSharepoint) {
+    elements.openSharepoint.addEventListener("click", openProjectSharePoint);
+  }
 
   elements.tableAddRow.addEventListener("click", () => {
     if (state.tiptapEditor) {
@@ -722,9 +733,19 @@ function openProject(project) {
   elements.projectTitle.textContent = project.data.description || project.folderName;
   elements.projectPath.textContent = project.id;
   renderProjectFields(project);
+  updateSharePointButton(project);
   renderNotes(project);
   warmProjectFolderPath(project);
   switchView("project");
+}
+
+function openProjectSharePoint() {
+  const link = deriveProjectSharePointUrl(state.activeProject);
+  if (!link) {
+    return;
+  }
+
+  window.open(link, "_blank", "noopener");
 }
 
 async function copyProjectFolderPath() {
@@ -819,6 +840,84 @@ function getExpectedProjectParts(project) {
   return parts;
 }
 
+function updateSharePointButton(project) {
+  if (!elements.openSharepoint) {
+    return;
+  }
+
+  const link = deriveProjectSharePointUrl(project);
+  elements.openSharepoint.disabled = !link;
+  elements.openSharepoint.title = link ? "Open SharePoint folder" : "No SharePoint link available";
+}
+
+function deriveProjectSharePointUrl(project) {
+  if (!project) {
+    return null;
+  }
+
+  const jobNo = String(project.data.jobNo ?? project.data.title ?? "").trim();
+  const projectType = project.data.type || project.rootName || "";
+  return deriveSharePointUrl(jobNo, projectType);
+}
+
+function deriveSharePointUrl(jobNo, projectType) {
+  const normalizedJobNo = String(jobNo || "").trim();
+  if (!normalizedJobNo) {
+    return null;
+  }
+
+  const type = String(projectType || "").trim().toUpperCase();
+  const upperJobNo = normalizedJobNo.toUpperCase();
+
+  if (
+    matchesTypeTokens(type, ["WO", "WOS", "WORK ORDER", "WORK ORDERS"]) ||
+    upperJobNo.startsWith("WO")
+  ) {
+    return SHAREPOINT_BASES.workOrders + encodeURIComponent(normalizedJobNo);
+  }
+
+  if (
+    matchesTypeTokens(type, ["CR", "CAPITAL REPAIR", "CAPITAL REPAIRS"]) ||
+    upperJobNo.startsWith("CR")
+  ) {
+    return SHAREPOINT_BASES.workOrders + encodeURIComponent(normalizedJobNo);
+  }
+
+  if (
+    matchesTypeTokens(type, ["EI", "ENGINEERING STUDY", "ENGINEERING STUDIES"]) ||
+    upperJobNo.startsWith("EI")
+  ) {
+    return SHAREPOINT_BASES.engineeringStudies + encodeURIComponent(normalizedJobNo);
+  }
+
+  if (matchesTypeTokens(type, ["SCP", "SCPS"])) {
+    return SHAREPOINT_BASES.scp + encodeURIComponent(normalizedJobNo);
+  }
+
+  if (matchesTypeTokens(type, ["SER", "SERS"])) {
+    return SHAREPOINT_BASES.ser + encodeURIComponent(normalizedJobNo);
+  }
+
+  return null;
+}
+
+function matchesTypeTokens(type, tokens) {
+  return tokens.some((token) => matchesTypeToken(type, token));
+}
+
+function matchesTypeToken(type, token) {
+  if (!type) {
+    return false;
+  }
+
+  return (
+    type === token ||
+    type.startsWith(token + " ") ||
+    type.startsWith(token + "-") ||
+    type.startsWith(token + ":")
+  );
+}
+
 function showCopyStatus(message) {
   if (!elements.copyStatus) {
     return;
@@ -904,6 +1003,7 @@ function renderProjectFields(project) {
 
       clearTimeout(jsonSaveTimer);
       jsonSaveTimer = setTimeout(() => saveProjectJson(project), 500);
+      updateSharePointButton(project);
     });
 
     const inputWrap = document.createElement("div");

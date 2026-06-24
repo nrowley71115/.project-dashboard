@@ -113,6 +113,16 @@ button:hover {
   box-shadow: 0 6px 18px rgba(41, 31, 23, 0.12);
 }
 
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 button.primary {
   background: var(--accent);
   color: #fff;
@@ -440,6 +450,10 @@ tbody tr.is-selected {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+}
+
+.sharepoint-button {
+  white-space: nowrap;
 }
 
 .project-card h3 {

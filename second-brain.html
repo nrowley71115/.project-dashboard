@@ -37,7 +37,7 @@
           </div>
           <div class="brain-hero-stat">
             <span>New Notes</span>
-            <strong>UPS + AOOV</strong>
+            <strong>IS + BK Vibro</strong>
           </div>
           <div class="brain-hero-stat">
             <span>Use Case</span>
@@ -69,13 +69,15 @@
             </nav>
           </div>
 
-          <div class="wiki-sidebar-card wiki-sidebar-note">
-            <h3>How to add more</h3>
-            <p>Keep each topic as its own section and add new note cards under the matching heading instead of one long list.</p>
-          </div>
         </aside>
 
         <div class="wiki-content">
+          <!-- AI maintenance notes:
+               - Keep each topic as its own section and add new note cards under the matching heading.
+               - Standards holds project-independent standards and reusable requirement notes.
+               - Instrumentation holds loop design reminders and general device-selection guidance unless it belongs to a specific technology.
+               - AOOV holds repeated actuator, valve body, solenoid, vendor combinations, and sizing reminders.
+               - Deluge holds release components, trim details, standard drawing exceptions, and searchable device GMNs. -->
           <p id="wiki-empty-state" class="wiki-empty-state is-hidden">No notes match that search yet.</p>
 
           <section id="standards" class="wiki-section">
@@ -97,10 +99,10 @@
               </article>
 
               <article class="wiki-entry">
-                <h3>Working Notes</h3>
+                <h3>Elementary and Plan Symbols</h3>
                 <ul>
-                  <li>Use this section for quick requirements you find yourself re-checking during design reviews.</li>
-                  <li>Add project-independent standards notes here instead of burying them in individual project folders.</li>
+                  <li><a href="https://pwweb.eastman.com/Resources/Services/ProjectWise/Download.ashx/View?connectionId=default&amp;key=ECObjects%7CBentley_DMS%7CDMSDocument%7C251342_100&amp;view=inline&amp;provider=Bentley.ECOM.ProjectWiseProvider&amp;location=WSNVAPWISPRD2.emn.com%3Abentley_pw" target="_blank" rel="noopener noreferrer">S-3E-9438 - Elementary Diagram &amp; Single Line Symbols</a></li>
+                  <li><a href="https://pwweb.eastman.com/Resources/Services/ProjectWise/Download.ashx/View?connectionId=default&amp;key=ECObjects%7CBentley_DMS%7CDMSDocument%7C251342_99&amp;view=inline&amp;provider=Bentley.ECOM.ProjectWiseProvider&amp;location=WSNVAPWISPRD2.emn.com%3Abentley_pw" target="_blank" rel="noopener noreferrer">S-3E-9439 - Power &amp; Instrument Plan Symbols</a></li>
                 </ul>
               </article>
             </div>
@@ -125,10 +127,32 @@
               </article>
 
               <article class="wiki-entry">
-                <h3>Reusable Prompts</h3>
+                <h3>Intrinsic Safety Selection</h3>
                 <ul>
-                  <li>Add loop design reminders, instrument sizing assumptions, and install lessons learned here.</li>
-                  <li>Keep device-specific notes in a technology section such as AOOV unless the note is tied to a design standard.</li>
+                  <li>Only classify an instrument as intrinsically safe when the device is in a hazardous area and an explosion-proof option cannot be selected.</li>
+                  <li>Do not select the Rosemount I5 certification option. It is only intrinsically safe and should not be used for these cases.</li>
+                  <li>Prefer E5 or K5 when explosion-proof certifications are available so the instrument does not need to be classified as intrinsically safe.</li>
+                </ul>
+              </article>
+
+              <article class="wiki-entry">
+                <h3>BK Vibro Migration and Contacts</h3>
+                <ul>
+                  <li>Older site vibration monitoring systems include the Bently Nevada 7200 analog platform and the 3300 series.</li>
+                  <li>Site-wide replacements are moving to BK Vibro equipment.</li>
+                  <li>Tracy Lippe - Sales Area Manager - <a href="mailto:Tracy.Lippe@bkvibro.com">Tracy.Lippe@bkvibro.com</a></li>
+                  <li>Alex Beitel - Service Manager - <a href="mailto:alex.beitel@bkvibro.com">alex.beitel@bkvibro.com</a></li>
+                  <li>Jared Angel - Service Engineer - <a href="mailto:Jared.Angel@bkvibro.com">Jared.Angel@bkvibro.com</a></li>
+                </ul>
+              </article>
+
+              <article class="wiki-entry">
+                <h3>DeltaV CIOC and CSLS References</h3>
+                <ul>
+                  <li><a href="https://www.emerson.com/is/content/emerson/en/systems-and-software/deltav-distributed-control-system-dcs/product-data-sheets/documents/deltav-electronic-marshalling.pdf" target="_blank" rel="noopener noreferrer">DeltaV Electronic Marshalling</a></li>
+                  <li><a href="https://www.proconexdirect.com/asset/56634" target="_blank" rel="noopener noreferrer">DeltaV Electronic Marshalling for Migrations</a></li>
+                  <li><a href="https://www.emerson.com/is/content/emerson/en/systems-and-software/deltav-distributed-control-system-dcs/product-data-sheets/documents/deltav-electronic-marshalling-with-distributed-charms.pdf" target="_blank" rel="noopener noreferrer">DeltaV Electronic Marshalling with Distributed CHARMs</a></li>
+                  <li><a href="https://www.emerson.com/is/content/emerson/en/systems-and-software/deltav-safety-instrumented-systems/product-data-sheets/deltav-sis-with-electronic-marshalling.pdf" target="_blank" rel="noopener noreferrer">DeltaV SIS with Electronic Marshalling</a></li>
                 </ul>
               </article>
             </div>
@@ -184,13 +208,6 @@
                 </ul>
               </article>
 
-              <article class="wiki-entry">
-                <h3>Section Notes</h3>
-                <ul>
-                  <li>Use this section for actuator, valve body, solenoid, and vendor combinations that repeat across projects.</li>
-                  <li>Add sizing reminders, preferred assemblies, and site-specific lessons learned here.</li>
-                </ul>
-              </article>
             </div>
           </section>
 
@@ -219,13 +236,6 @@
                 </ul>
               </article>
 
-              <article class="wiki-entry">
-                <h3>Section Notes</h3>
-                <ul>
-                  <li>Use this area for deluge release components, trim details, and standard drawing exceptions.</li>
-                  <li>Add common device GMNs here so they are searchable without opening a prior project package.</li>
-                </ul>
-              </article>
             </div>
           </section>
 
