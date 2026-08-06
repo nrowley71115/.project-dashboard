@@ -6,7 +6,7 @@ import socketserver
 import webbrowser
 
 DEFAULT_PORT = 8000
-BUILD_TAG = "20260416b"
+BUILD_TAG = "20260806a"
 
 
 class NoCacheHandler(http.server.SimpleHTTPRequestHandler):

@@ -8,7 +8,7 @@ import webbrowser
 PROJECT_DASHBOARD_DIR = r"C:\Users\u144243\OneDrive - Eastman Chemical Company\Documents\..Projects\.project-dashboard"
 DEFAULT_PORT = 8000
 PORT_SCAN_RANGE = 100
-BUILD_TAG = "20260416b"
+BUILD_TAG = "20260806a"
 
 
 class NoCacheHandler(http.server.SimpleHTTPRequestHandler):

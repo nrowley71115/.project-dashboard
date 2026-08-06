@@ -45,7 +45,7 @@ Notes:
 - **Notes editor**: Tiptap-based rich text editor with headings, lists, tables, toggles, task lists, links, and pasted images.
 - **Engineering Second Brain**: Standalone wiki-style knowledge page (`second-brain.html`) with topic navigation and search for standards, instrumentation, technology notes, power, and field references.
 - **Other Tasks workspace**: Separate locally stored task dashboard for non-project work with quick entry, notes, target dates, and completion tracking.
-- **Copy project folder path**: One-click copy of the project directory path.
+- **Copy project folder path**: One-click copy of the project directory path, or use **Ctrl+M** from a project detail page. `Ctrl+N` remains available for opening a new browser window.
 - **SharePoint shortcut**: Opens the derived SharePoint folder for supported job numbers and project types.
 
 ## How It Works

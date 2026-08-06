@@ -262,6 +262,19 @@ function bindEvents() {
       elements.searchInput.focus();
       elements.searchInput.select();
     }
+
+    if (
+      event.ctrlKey &&
+      !event.altKey &&
+      !event.metaKey &&
+      !event.repeat &&
+      event.key.toLowerCase() === "m" &&
+      state.activeProject &&
+      !elements.projectView.classList.contains("is-hidden")
+    ) {
+      event.preventDefault();
+      void copyProjectFolderPath();
+    }
   });
 
   document.addEventListener("click", (event) => {
