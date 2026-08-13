@@ -43,6 +43,7 @@ Notes:
 - **Search**: Quick search across title, description, and folder name.
 - **Project details editor**: Edits `project.json` fields in place with autosave.
 - **Notes editor**: Tiptap-based rich text editor with headings, lists, tables, toggles, task lists, links, and pasted images.
+- **Complete Project**: Sets a project to 100% and Closed, then moves the entire project folder into the same building's Completed folder through the local Python service.
 - **Engineering Second Brain**: Standalone wiki-style knowledge page (`second-brain.html`) with topic navigation and search for standards, instrumentation, technology notes, power, and field references.
 - **Other Tasks workspace**: Separate locally stored task dashboard for non-project work with quick entry, notes, target dates, and completion tracking.
 - **Copy project folder path**: One-click copy of the project directory path, or use **Ctrl+M** from a project detail page. `Ctrl+N` remains available for opening a new browser window.
@@ -55,6 +56,8 @@ Notes:
 - Data is cached in memory and rendered in the dashboard table or calendar view.
 - Editing a field updates the in-memory data and writes back to `project.json` after a short debounce.
 - The notes editor stores its content in `project.json` under `notesDoc`.
+- The Complete Project action flushes pending edits, calls `/api/complete-project` on the local Python server, and refreshes the dashboard after the move succeeds.
+- The local service accepts only project type, building, and folder names; it derives the filesystem paths under the configured Projects root, refuses destination collisions, and binds to localhost.
 - The Other Tasks workspace stores its data in browser `localStorage`, separate from project folders.
 - The Second Brain is a normal static HTML page that you edit directly when you want to add links or notes.
 - The copy button builds the project path from the known root/building metadata and uses `resolve()` when available.
@@ -67,12 +70,17 @@ This project is static HTML, CSS, and JS. You can run it directly in a browser t
 Option A: Open the file directly
 1. Open `project-dashboard/index.html` in Chrome or Edge.
 2. Click **Select Projects Folder** and choose the main Projects root.
+3. Direct-file mode supports browsing and editing, but **Complete Project** requires the local server in Option B.
 
 Option B: Use a local static server (recommended)
-1. Start any static server in the `project-dashboard` folder.
+1. Start the included server with `python start_dashboard.py` from the `project-dashboard` folder.
 2. Open the served URL in Chrome or Edge.
 3. Click **Select Projects Folder** and choose the main Projects root.
 4. Open **Engineering Second Brain** from the header and edit `second-brain.html` directly as needed.
+
+The existing `notion (used to start the web server).py` launcher delegates to the same server for compatibility.
+
+The server derives the Projects root as the parent folder of `project-dashboard`. Set the `PROJECTS_ROOT` environment variable before starting it if the dashboard is pointed at a different root.
 
 ## Replicating This Setup
 
@@ -87,7 +95,8 @@ Option B: Use a local static server (recommended)
 - `second-brain.html` - Engineering knowledge landing page.
 - `other-tasks.html` - Quick-capture dashboard for non-project tasks.
 - `styles.css` - Styling for dashboard, editor, and controls.
-- `app.js` - Application logic, filesystem access, and editor setup.
+- `app.js` - Application logic, filesystem access, editor setup, and completion request.
+- `start_dashboard.py` - Local static server and guarded project-completion API.
 - `other-tasks.js` - Local task storage, filtering, and detail editing logic.
 
 ## Browser Requirements

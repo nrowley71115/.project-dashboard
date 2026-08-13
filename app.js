@@ -153,6 +153,7 @@ const state = {
   notesMenuQuery: "",
   notesMenuIndex: 0,
   notesMenuResults: [],
+  completionInProgress: false,
 };
 
 const elements = {
@@ -176,6 +177,8 @@ const elements = {
   projectTitle: document.getElementById("project-title"),
   projectPath: document.getElementById("project-path"),
   projectFields: document.getElementById("project-fields"),
+  completeProject: document.getElementById("complete-project"),
+  completeStatus: document.getElementById("complete-status"),
   notesEditor: document.getElementById("notes-editor"),
   notesMenu: document.getElementById("notes-menu"),
   tableToolbar: document.getElementById("table-toolbar"),
@@ -191,6 +194,7 @@ const elements = {
 
 let notesSaveTimer = null;
 let jsonSaveTimer = null;
+let jsonSavePromise = Promise.resolve(true);
 
 init();
 
@@ -307,6 +311,12 @@ function bindEvents() {
 
   if (elements.openSharepoint) {
     elements.openSharepoint.addEventListener("click", openProjectSharePoint);
+  }
+
+  if (elements.completeProject) {
+    elements.completeProject.addEventListener("click", () => {
+      void completeActiveProject();
+    });
   }
 
   elements.tableAddRow.addEventListener("click", () => {
@@ -747,6 +757,7 @@ function openProject(project) {
   elements.projectPath.textContent = project.id;
   renderProjectFields(project);
   updateSharePointButton(project);
+  updateCompletionButton(project);
   renderNotes(project);
   warmProjectFolderPath(project);
   switchView("project");
@@ -759,6 +770,97 @@ function openProjectSharePoint() {
   }
 
   window.open(link, "_blank", "noopener");
+}
+
+async function completeActiveProject() {
+  const project = state.activeProject;
+  if (!project || project.isCompleted || state.completionInProgress) {
+    return;
+  }
+
+  const projectLabel = project.data.description || project.folderName;
+  const confirmed = window.confirm(
+    `Complete "${projectLabel}"? This will set it to 100%, mark it Closed, and move the entire project folder into the building's Completed folder.`,
+  );
+  if (!confirmed) {
+    return;
+  }
+
+  if (window.location.protocol !== "http:" && window.location.protocol !== "https:") {
+    showCompletionStatus("Start the dashboard with start_dashboard.py first.");
+    return;
+  }
+
+  state.completionInProgress = true;
+  updateCompletionButton(project);
+  showCompletionStatus("Completing...");
+
+  try {
+    const saved = await flushProjectSaves(project);
+    if (!saved) {
+      throw new Error("The latest project changes could not be saved.");
+    }
+
+    const response = await fetch("/api/complete-project", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        rootName: project.rootName,
+        buildingName: project.buildingName,
+        folderName: project.folderName,
+      }),
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.ok) {
+      throw new Error(result.error || "The local completion service rejected the request.");
+    }
+
+    project.isCompleted = true;
+    project.completedFolderName = result.completedFolderName || "Completed";
+    state.activeProject = null;
+    switchView("dashboard");
+    hideSearchResults();
+    await loadProjects();
+    elements.rootStatus.textContent = "Completed and moved to " + result.projectPath + ".";
+  } catch (error) {
+    showCompletionStatus("Completion failed: " + (error.message || "Unknown error."));
+  } finally {
+    state.completionInProgress = false;
+    updateCompletionButton(project);
+  }
+}
+
+async function flushProjectSaves(project) {
+  clearTimeout(jsonSaveTimer);
+  clearTimeout(notesSaveTimer);
+  jsonSaveTimer = null;
+  notesSaveTimer = null;
+  await jsonSavePromise;
+  return saveProjectJson(project);
+}
+
+function updateCompletionButton(project) {
+  if (!elements.completeProject) {
+    return;
+  }
+
+  elements.completeProject.disabled =
+    !project || project.isCompleted || state.completionInProgress;
+  elements.completeProject.textContent = state.completionInProgress
+    ? "Completing..."
+    : "Complete Project";
+}
+
+function showCompletionStatus(message) {
+  if (!elements.completeStatus) {
+    return;
+  }
+
+  elements.completeStatus.textContent = message;
+  clearTimeout(state.completionStatusTimer);
+  state.completionStatusTimer = setTimeout(() => {
+    elements.completeStatus.textContent = "";
+  }, 5000);
 }
 
 async function copyProjectFolderPath() {
@@ -1283,13 +1385,19 @@ function normalizeNotesDoc(notesDoc) {
   return { type: "doc", content: [] };
 }
 
-async function saveProjectJson(project) {
-  try {
-    const content = JSON.stringify(project.data, null, "\t") + "\n";
-    await writeFile(project.jsonHandle, content);
-  } catch (error) {
-    elements.rootStatus.textContent = "Unable to save project.json for " + project.folderName;
-  }
+function saveProjectJson(project) {
+  const savePromise = jsonSavePromise.then(async () => {
+    try {
+      const content = JSON.stringify(project.data, null, "\t") + "\n";
+      await writeFile(project.jsonHandle, content);
+      return true;
+    } catch (error) {
+      elements.rootStatus.textContent = "Unable to save project.json for " + project.folderName;
+      return false;
+    }
+  });
+  jsonSavePromise = savePromise;
+  return savePromise;
 }
 
 async function saveProjectNotes(project) {
